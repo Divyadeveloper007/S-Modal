@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email and Message Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+    }
+
+    #openFormButton, .close-btn, button[type="submit"] {
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    #openFormButton {
+      background: #4CAF50;
+      font-size: 16px;
+      /* position: absolute; */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #openFormButton:hover { background: #45a049; }
+
+    #overlay, #form-container {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #overlay {
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    #form-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 330px;
+      z-index: 1000;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .close-btn { background: red; padding: 5px 10px; }
+    .close-btn:hover { background: darkred; }
+
+    input, textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea { resize: none; height: 100px; }
+    button[type="submit"] { background: #007BFF; }
+    button[type="submit"]:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <button id="openFormButton">Open Form</button>
+  <div id="overlay"></div>
+  <div id="form-container">
+    <div class="form-header">
+      <h3>New Message</h3>
+      <button class="close-btn">X</button>
+    </div>
+    <form>
+      <label>Email:</label>
+      <input type="email" placeholder="Enter your email" required>
+      <label>Message:</label>
+      <textarea placeholder="Enter your message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <script>
+    const toggleDisplay = (state) => {
+      document.getElementById('overlay').style.display = state;
+      document.getElementById('form-container').style.display = state;
+    };
+
+    document.getElementById('openFormButton').onclick = () => toggleDisplay('block');
+    document.querySelector('.close-btn').onclick = () => toggleDisplay('none');
+    document.getElementById('overlay').onclick = () => toggleDisplay('none');
+  </script>
+</body>
+</html>
